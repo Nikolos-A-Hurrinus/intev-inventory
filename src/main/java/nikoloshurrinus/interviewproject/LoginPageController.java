@@ -12,6 +12,6 @@ public class LoginPageController {
 
     @FXML
     public void LoginButtonClicked(ActionEvent actionEvent) throws IOException {
-        InventoryTracker.setRoot("TrackingSheet");
+        InventoryTracker.setRoot("InventoryPage");
     }
 }

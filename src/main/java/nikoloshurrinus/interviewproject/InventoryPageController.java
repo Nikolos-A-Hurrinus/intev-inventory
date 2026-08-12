@@ -1,4 +1,4 @@
 package nikoloshurrinus.interviewproject;
 
-public class TrackingSheetController {
+public class InventoryPageController {
 }
