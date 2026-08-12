@@ -1,7 +1,8 @@
+package nikoloshurrinus.interviewproject;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import nikoloshurrinus.interviewproject.InventoryTracker;
 
 import java.io.IOException;
 

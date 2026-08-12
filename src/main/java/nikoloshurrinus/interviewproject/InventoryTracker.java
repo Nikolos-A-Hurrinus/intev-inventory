@@ -15,11 +15,10 @@ public class InventoryTracker extends Application {
 
     public static Firestore fstore;
     public static FirebaseAuth fauth;
-    private final FirestoreContext contxtFirebase = new FirestoreContext();
 
     @Override
     public void start(Stage stage) throws IOException {
-        fstore = contxtFirebase.firebase();
+        fstore = FirestoreContext.getDB();
         fauth = FirebaseAuth.getInstance();
 
         scene = new Scene(loadFXML("LoginPage"), 640, 480);
@@ -27,7 +26,7 @@ public class InventoryTracker extends Application {
         stage.show();
     }
 
-    public static void setRoot(String fxml) throws IOException {
+    static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 

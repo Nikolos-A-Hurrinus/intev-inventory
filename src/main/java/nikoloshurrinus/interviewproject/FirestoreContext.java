@@ -6,59 +6,39 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-
-/*
-this class utilizes the fire store's provided code to access and utilize the fire store database and authentication
-features
-*/
 
 public class FirestoreContext {
 
-    public Firestore firebase() {
-        try {
-
-            FileInputStream serviceAccount =
-                    new FileInputStream("src/main/resources/nikoloshurrinus/interviewproject/key.json");
-
-            FirebaseOptions options = FirebaseOptions.builder()
-                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    .build();
-
-            FirebaseApp.initializeApp(options);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            System.exit(1);
-        }
-        return FirestoreClient.getFirestore();
-    }
+    private static Firestore db;
 
     public static Firestore getDB() {
-
         try {
+            if (db == null) {
 
-            if (FirebaseApp.getApps().isEmpty()) {
-
+                // Load key.json from resources
                 InputStream serviceAccount =
-                        FirestoreContext.class.getResourceAsStream(
-                                "src/main/resources/nikoloshurrinus/interviewproject/key.json");
+                        FirestoreContext.class.getResourceAsStream("/key.json");
+
+                if (serviceAccount == null) {
+                    throw new RuntimeException("Could not find key.json in resources!");
+                }
 
                 FirebaseOptions options = FirebaseOptions.builder()
                         .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                         .build();
 
-                FirebaseApp.initializeApp(options);
+                if (FirebaseApp.getApps().isEmpty()) {
+                    FirebaseApp.initializeApp(options);
+                }
+
+                db = FirestoreClient.getFirestore();
             }
 
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to initialize Firestore", e);
         }
 
-        return FirestoreClient.getFirestore();
+        return db;
     }
-
-
 }
