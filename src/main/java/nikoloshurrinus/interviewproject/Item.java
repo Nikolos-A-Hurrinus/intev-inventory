@@ -6,6 +6,8 @@ public class Item {
     int quantity;
     String category;
 
+    public Item(){}
+
     public Item(String ID, String name, int quantity, String category){
         this.ID = ID;
         this.name = name;

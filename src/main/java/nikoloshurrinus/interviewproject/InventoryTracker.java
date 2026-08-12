@@ -21,7 +21,7 @@ public class InventoryTracker extends Application {
         fstore = FirestoreContext.getDB();
         fauth = FirebaseAuth.getInstance();
 
-        scene = new Scene(loadFXML("LoginPage"), 640, 480);
+        scene = new Scene(loadFXML("LoginPage"));
         stage.setScene(scene);
         stage.show();
     }
