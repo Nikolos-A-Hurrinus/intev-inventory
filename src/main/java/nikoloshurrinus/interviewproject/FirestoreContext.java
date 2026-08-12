@@ -8,6 +8,11 @@ import com.google.firebase.cloud.FirestoreClient;
 
 import java.io.InputStream;
 
+/*
+this class is used for setting up and authenticating the connection between the program and firestore.
+this is vital in getting firestore to work.
+ */
+
 public class FirestoreContext {
 
     private static Firestore db;
